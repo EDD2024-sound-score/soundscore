@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
-
-  root "song_selection#index"       # 楽曲選択画面
-  get 'song_selection/upload'       # 自分の楽曲をアップロードする画面
-  post 'song_selection/upload_song' # 楽曲をアップロードする処理
-  get 'song_selection/result'       # 精度の結果を出力する画面
+  get 'song_selection/index'
+  get 'song_selection/upload/:id', to: 'song_selection#upload', as: 'upload_song' # 楽曲IDを指定してアップロードページへ
+  post 'song_selection/upload_song/:id', to: 'song_selection#upload_song', as: 'submit_song'
+  get 'song_selection/result' # 結果表示用
 
   devise_for :users, controllers: {
     registrations: 'users/registrations',

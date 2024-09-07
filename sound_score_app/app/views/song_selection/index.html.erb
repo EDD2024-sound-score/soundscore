@@ -1,8 +1,14 @@
 <h1>楽曲選択</h1>
 <ul>
   <% @songs.each do |song| %>
-    <li><%= song.title %> by <%= song.artist %></li>
+    <li>
+      <%= song.title %> by <%= song.artist %>
+      <a href="<%= upload_song_path(song) %>">この曲に演奏をアップロード</a>
+    </li>
   <% end %>
 </ul>
 
-<a href="<%= song_selection_upload_path %>">楽曲をアップロード</a>
+<%= button_to 'Logout', destroy_user_session_path, method: :delete, data: { turbo: false } %>
+
+
+

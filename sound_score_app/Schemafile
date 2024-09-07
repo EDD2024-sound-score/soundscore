@@ -32,9 +32,13 @@ create_table "song_pitches", force: :cascade do |t|
 end
 
 create_table "songs", force: :cascade do |t|
+  t.string "title", null: false
+  t.string "artist"
+  t.string "genre", null: false # typeからstatusに名前を変更してenumの代わりにstringを使用
   t.datetime "created_at", null: false
   t.datetime "updated_at", null: false
 end
+
 
 create_table "users", force: :cascade do |t|
   t.string "email", default: "", null: false

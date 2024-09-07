@@ -1,6 +1,6 @@
-<h1>楽曲をアップロード</h1>
+<h1><%= @song.title %> の演奏をアップロード</h1>
 
-<%= form_with url: song_selection_upload_song_path, local: true, method: :post, multipart: true do |f| %>
-  <%= f.file_field :song_file %>
+<%= form_with url: submit_song_path(@song), local: true, method: :post, multipart: true do |f| %>
+  <%= f.file_field :performance_file %>
   <%= f.submit "アップロード" %>
 <% end %>
