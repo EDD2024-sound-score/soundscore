@@ -1,0 +1,55 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+create_table "histories", force: :cascade do |t|
+  t.integer "user_id", null: false
+  t.integer "song_id", null: false
+  t.datetime "created_at", null: false
+  t.datetime "updated_at", null: false
+  t.datetime "played_at", null: false
+  t.float "score"
+  t.text "record"
+  t.index ["song_id"], name: "index_histories_on_song_id"
+  t.index ["user_id"], name: "index_histories_on_user_id"
+end
+
+create_table "pitch_events", force: :cascade do |t|
+  t.integer "user_id", null: false
+  t.integer "song_id", null: false
+  t.datetime "created_at", null: false
+  t.datetime "updated_at", null: false
+  t.text "pitch", default: "[]", null: false
+  t.float "deviation", null: false
+  t.index ["song_id"], name: "index_pitch_events_on_song_id"
+  t.index ["user_id"], name: "index_pitch_events_on_user_id"
+end
+
+create_table "song_pitches", force: :cascade do |t|
+  t.integer "song_id", null: false
+  t.text "pitch", default: "[]", null: false
+  t.datetime "created_at", null: false
+  t.datetime "updated_at", null: false
+  t.index ["song_id"], name: "index_song_pitches_on_song_id"
+end
+
+create_table "songs", force: :cascade do |t|
+  t.datetime "created_at", null: false
+  t.datetime "updated_at", null: false
+end
+
+create_table "users", force: :cascade do |t|
+  t.string "email", default: "", null: false
+  t.string "encrypted_password", default: "", null: false
+  t.string "reset_password_token"
+  t.datetime "reset_password_sent_at"
+  t.datetime "remember_created_at"
+  t.datetime "created_at", null: false
+  t.datetime "updated_at", null: false
+  t.index ["email"], name: "index_users_on_email", unique: true
+  t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+end
+
+add_foreign_key "histories", "songs"
+add_foreign_key "histories", "users"
+add_foreign_key "pitch_events", "songs"
+add_foreign_key "pitch_events", "users"
+add_foreign_key "song_pitches", "songs"
