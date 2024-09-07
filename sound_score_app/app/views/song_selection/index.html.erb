@@ -1,1 +1,8 @@
-<h1>song selection</h1>
+<h1>楽曲選択</h1>
+<ul>
+  <% @songs.each do |song| %>
+    <li><%= song.title %> by <%= song.artist %></li>
+  <% end %>
+</ul>
+
+<a href="<%= song_selection_upload_path %>">楽曲をアップロード</a>
