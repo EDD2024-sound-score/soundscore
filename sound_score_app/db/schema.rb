@@ -38,6 +38,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_07_051218) do
     t.integer "song_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "pitch", default: "[]", null: false
     t.index ["song_id"], name: "index_song_pitches_on_song_id"
   end
 
