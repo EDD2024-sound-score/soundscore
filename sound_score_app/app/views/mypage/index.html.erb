@@ -1,3 +1,30 @@
-<h1>Mypage#index</h1>
-<p>Find me in app/views/mypage/index.html.erb</p>
-<h1>My page</h1>
+<h1>My Page</h1>
+
+<% if @histories.present? %>
+  <table>
+    <thead>
+      <tr>
+        <th>Action</th>
+        <th>Score</th>
+        <th>Played At</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @histories.each do |history| %>
+        <tr>
+          <td><%= history.record %></td>
+          <td><%= history.score %></td>
+          <td><%= history.played_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+          <td><%= link_to 'View Details', mypage_path(history) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <!-- Kaminariのページネーションリンク -->
+  <%= paginate @histories %>
+
+<% else %>
+  <p>No history available.</p>
+<% end %>
