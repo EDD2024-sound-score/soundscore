@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'song_selection/upload/:id', to: 'song_selection#upload', as: 'upload_song' # 楽曲IDを指定してアップロードページへ
   post 'song_selection/upload_song/:id', to: 'song_selection#upload_song', as: 'submit_song'
   get 'song_selection/result' # 結果表示用
+  get 'mypage/index/:id', to: 'mypage#index', as: 'mypage' # マイページ
 
 
   devise_for :users, controllers: {
