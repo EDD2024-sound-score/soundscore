@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   post 'song_selection/upload_song/:id', to: 'song_selection#upload_song', as: 'submit_song'
   get 'song_selection/result' # 結果表示用
 
+
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions'
