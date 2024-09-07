@@ -1,6 +1,22 @@
 <h1><%= @song.title %> の演奏をアップロード</h1>
 
+<!-- アップロードフォーム -->
 <%= form_with url: submit_song_path(@song), local: true, method: :post, multipart: true do |f| %>
-  <%= f.file_field :performance_file %>
-  <%= f.submit "アップロード" %>
+  <div class="form-group">
+    <!-- ファイル選択フィールド -->
+    <%= f.label :performance_file, "演奏ファイルを選択してください" %><br>
+    <%= f.file_field :performance_file, class: "form-control", required: true %>
+  </div>
+
+  <!-- アップロードボタン -->
+  <div class="form-group">
+    <%= f.submit "アップロード", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<!-- エラーメッセージの表示（アップロード失敗時） -->
+<% if flash[:alert].present? %>
+  <div class="alert alert-danger">
+    <p><%= flash[:alert] %></p>
+  </div>
 <% end %>

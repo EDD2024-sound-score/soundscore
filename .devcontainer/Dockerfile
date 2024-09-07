@@ -6,11 +6,21 @@ FROM mcr.microsoft.com/vscode/devcontainers/ruby:0-${VARIANT}
 ARG NODE_VERSION="16"
 RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && nvm install ${NODE_VERSION} 2>&1"
 
+# Bundlerのインストール
 ARG BUNDLER_VERSION='2.3.14'
 RUN gem install bundler -v ${BUNDLER_VERSION}
 ENV BUNDLE_PATH='/usr/local/bundle'
 
-# Install Rails
+# Railsのインストール
 ARG RAILS_VERSIONS='7.0.3'
 RUN gem install rails -v ${RAILS_VERSIONS}
 RUN gem install ruby-lsp
+
+# Python3とpipをインストール
+RUN apt-get update -qq && apt-get install -y python3 python3-pip
+
+# 必要なPythonパッケージをインストールする場合は、以下に追加
+# RUN pip3 install <パッケージ名>
+
+# デフォルトのコマンド
+CMD ["sleep", "infinity"]
