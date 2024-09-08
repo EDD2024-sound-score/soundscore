@@ -11,6 +11,25 @@
   </head>
 
   <body>
-    <%= yield %>
+    <!-- ヘッダー部分 -->
+    <% unless current_page?(root_path) %> <!-- rootパスではない場合のみ表示 -->
+      <header style="background-color: #333; color: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <h1 style="margin: 0; font-size: 1.5rem;">SoundScoreApp</h1>
+        </div>
+        <nav style="display: flex; gap: 20px;"> <!-- flexboxとgapで横並びの間隔調整 -->
+          <% if user_signed_in? %> <!-- ログインしているときのみ表示 -->
+            <%= link_to 'My Page', mypage_path(current_user), style: 'color: white; text-decoration: none;' %>
+            <%= link_to 'Song Selection', song_selection_index_path, style: 'color: white; text-decoration: none;' %>
+            <%= button_to 'Logout', destroy_user_session_path, method: :delete, data: { turbo: false }, style: 'color: white; background: none; border: none; cursor: pointer;' %>
+          <% end %>
+        </nav>
+      </header>
+    <% end %>
+
+    <!-- メインコンテンツ -->
+    <main style="padding: 20px;">
+      <%= yield %>
+    </main>
   </body>
 </html>
