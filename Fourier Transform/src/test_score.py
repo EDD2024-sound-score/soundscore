@@ -1,7 +1,16 @@
-# 振幅が初めて1,000,000を超えた時の周波数のみを配列に保存するプログラム(完成形)
+# 周波数のみを配列に保存し、Railsからの入力に対応したプログラム(完成形)
 from pydub import AudioSegment
 import numpy as np
 from scipy.fft import fft, fftfreq
+import sys
+
+# コマンドライン引数からファイルパスとpitchデータを取得
+file_path = sys.argv[1]
+pitch_data = sys.argv[2]
+
+# pitch_dataをスペース区切りの文字列からfloatのリストに変換
+frequencies = list(map(float, pitch_data.split()))
+
 
 # MP3ファイルを読み込む関数
 def load_mp3(file_path):
@@ -48,12 +57,10 @@ def process_fft(input_file_path, segment_duration_sec=0.25):
     return frequency_results
 
 # 実行
-input_mp3_path = "../data/chorale_correct.mp3"  # 任意の入力ファイル名
+#file_path = "../data/chorale_correct.mp3"  # 任意の入力ファイル名
 
 # FFT処理を実行して結果を配列に保存
-resulting_frequencies = process_fft(input_mp3_path)
+testdata = process_fft(file_path)
 
 # 結果の配列を表示
-print(resulting_frequencies)
-
-frepuencies.length
+#print(testdata)
