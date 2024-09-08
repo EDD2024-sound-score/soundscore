@@ -1,14 +1,36 @@
-<h1>楽曲選択</h1>
-<ul>
-  <% @songs.each do |song| %>
-    <li>
-      <%= song.title %> by <%= song.artist %>
-      <a href="<%= upload_song_path(song) %>">この曲に演奏をアップロード</a>
-    </li>
-  <% end %>
-</ul>
-
-<%= button_to 'Logout', destroy_user_session_path, method: :delete, data: { turbo: false } %>
+<div style="padding: 40px; background-color: #f9f9f9;"> <!-- 全体に余白を持たせるコンテナ -->
+  <h1 style="font-size: 2rem; text-align: left; margin-bottom: 30px; padding-left: 20px;">選曲</h1>
 
 
+  <!-- グリッドレイアウト -->
+  <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; padding: 0 20px;">
 
+    <% @songs.each do |song| %>
+      <!-- 曲カード全体をリンクにする -->
+      <a href="<%= upload_song_path(song) %>" style="text-decoration: none;">
+        <div style="background-color: #e0e0e0; border-radius: 8px; padding: 20px; display: flex; flex-direction: column; align-items: center; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); transition: background-color 0.2s, transform 0.2s; cursor: pointer;">
+          <!-- 音符アイコン -->
+          <div style="font-size: 2rem; margin-bottom: 10px;">🎵</div>
+          <!-- 曲名 -->
+          <div style="font-size: 1.2rem; margin-bottom: 5px; color: black;"><%= song.title %></div>
+          <!-- アーティスト名 -->
+          <div style="font-size: 1rem; color: gray;"><%= song.artist %></div>
+        </div>
+      </a>
+    <% end %>
+
+  </div>
+
+  <!-- ログアウトボタン -->
+  <div style="margin-top: 40px; padding: 0 20px;">
+    <%= button_to 'Logout', destroy_user_session_path, method: :delete, data: { turbo: false }, style: "width: 100%; padding: 15px; background-color: #d9534f; color: white; border: none; border-radius: 8px; font-size: 1rem;" %>
+  </div>
+</div>
+
+<!-- カードのホバー効果を追加 -->
+<style>
+  a:hover div {
+    background-color: #d1d1d1; /* カーソルがホバーされたときの背景色 */
+    transform: scale(1.02); /* 少し拡大 */
+  }
+</style>

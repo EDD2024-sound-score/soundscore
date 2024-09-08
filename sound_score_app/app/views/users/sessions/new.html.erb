@@ -1,26 +1,38 @@
-<h2>Log in</h2>
+<h1 style="text-align: center; margin-bottom: 30px;">
+  <img src="<%= asset_path('title_icon.png') %>" alt="icon" style="vertical-align: middle; margin-right: 10px; width: 45px; height: 45px;">
+  SoundScore
+</h1>
+
+<h2 style="text-align: center; margin-bottom: 30px;">User Login</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <!-- エラーメッセージを表示 -->
+  <%= render "users/shared/error_messages", resource: resource %>
+
+  <!-- メールアドレスフィールド -->
+  <div class="field" style="margin-bottom: 20px; width: 60%; margin-left: auto; margin-right: auto;">
+    <%= f.label :email.downcase, style: "display: block; margin-bottom: 5px;" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", style: "width: 100%;" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+  <!-- パスワードフィールド -->
+  <div class="field" style="margin-bottom: 20px; width: 60%; margin-left: auto; margin-right: auto;">
+    <%= f.label :password.downcase, style: "display: block; margin-bottom: 5px;" %>
+    <%= f.password_field :password, autocomplete: "current-password", class: "form-control", style: "width: 100%;" %>
   </div>
 
+  <!-- Remember me チェックボックス -->
   <% if devise_mapping.rememberable? %>
-    <div class="field">
+    <div class="field" style="margin-bottom: 20px; width: 60%; margin-left: auto; margin-right: auto;">
       <%= f.check_box :remember_me %>
       <%= f.label :remember_me %>
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
+  <!-- ボタン -->
+  <div class="actions" style="width: 60%; margin-left: auto; margin-right: auto; margin-top: 20px; margin-bottom: 20px; display: flex; justify-content: space-between;">
+    <%= link_to "Sign up", new_registration_path(resource_name), style: "color: #DDA0DD; padding: 5px 15px; display: inline-block; text-decoration: none; border: 1px solid transparent; margin-top: 10px; margin-bottom: 10px; margin-right: auto;" %>
+    <%= f.submit "Log in", class: "btn btn-primary", style: "width: auto; padding: 5px 15px; margin-top: 10px; margin-bottom: 10px; font-size: 18px;" %>
   </div>
 <% end %>
 
-<%= render "users/shared/links" %>

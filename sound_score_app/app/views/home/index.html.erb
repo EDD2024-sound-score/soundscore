@@ -1,9 +1,50 @@
-<h1>SoundScoreApp</h1>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SoundScoreApp</title>
+  <style>
+    /* 背景色を画面全体に適用 */
+    body, html {
+      background-color: #f5f5f5; /* 背景色を薄いグレーに設定 */
+      height: 100%;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
+    /* コンテナ全体のスタイル */
+    .container {
+      max-width: 600px;
+      background-color: white;
+      padding: 40px;
+      box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
 
+  <div class="container">
+    <h1 style="text-align: center; margin-bottom: 30px;">
+      <img src="<%= asset_path('title_icon.png') %>" alt="icon" style="vertical-align: middle; margin-right: 10px; width: 60px; height: 60px;">
+      <span style="color: #333; font-weight: bold;">SoundScoreApp</span>
+    </h1>
 
-<!-- ログインボタン -->
-<%= link_to 'ログイン', new_user_session_path, class: 'btn btn-primary' %><br>
+    <p style="text-align: center; font-size: 18px; color: #666; margin-bottom: 30px;">
+      Welcome to the best platform for scoring and uploading your music. Login or sign up to get started!
+    </p>
 
-<!-- 新規登録ボタン -->
-<%= link_to '新規登録', new_user_registration_path, class: 'btn btn-secondary' %>
+    <!-- ログインボタン -->
+    <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+      <%= link_to 'ログイン', new_user_session_path, class: 'btn btn-lg btn-primary', style: 'padding: 15px 30px; font-size: 20px; font-weight: bold; border-radius: 5px;' %>
+    </div>
+
+    <!-- 新規登録ボタン -->
+    <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+      <%= link_to '新規登録', new_user_registration_path, class: 'btn btn-lg btn-outline-secondary', style: 'padding: 15px 30px; font-size: 20px; font-weight: bold; border-radius: 5px;' %>
+    </div>
+  </div>
+
+</body>
+</html>

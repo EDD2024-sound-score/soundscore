@@ -1,30 +1,29 @@
-<h1>My Page</h1>
+<div style="padding: 20px; background-color: #f9f9f9;">
+  <h1 style="font-size: 2rem; text-align: center; margin-bottom: 20px;">履歴</h1>
 
-<% if @histories.present? %>
-  <table>
-    <thead>
-      <tr>
-        <th>Action</th>
-        <th>Score</th>
-        <th>Played At</th>
-        <th>Details</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @histories.each do |history| %>
-        <tr>
-          <td><%= history.record %></td>
-          <td><%= history.score %></td>
-          <td><%= history.played_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
-          <td><%= link_to 'View Details', mypage_path(history) %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-  <!-- Kaminariのページネーションリンク -->
-  <%= paginate @histories %>
-
-<% else %>
-  <p>No history available.</p>
-<% end %>
+  <% if @histories.present? %>
+    <% @histories.each do |history| %>
+      <div style="background-color: #fff; margin-bottom: 15px; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        <!-- 曲名のフォントサイズを大きく -->
+        <h2 style="font-size: 2rem; color: #333; margin-bottom: 10px;">曲名: <%= history.song.title %></h2>
+        
+        <!-- 点数のフォントサイズをさらに大きく -->
+        <div style="font-size: 3rem; font-weight: bold; color: #666; margin-bottom: 10px;">得点: <%= history.score %>点</div>
+        
+        <div style="font-size: 1rem; color: #999;">演奏した時間: <%= history.played_at.strftime("%Y-%m-%d %H:%M:%S") %></div>
+        
+        <div style="margin-top: 10px;">
+          <%= link_to '詳細を見る', mypage_path(history), style: "text-decoration: none; color: #0066cc;" %>
+        </div>
+      </div>
+    <% end %>
+    
+    <!-- Kaminariのページネーションリンク -->
+    <%= paginate @histories %>
+    
+  <% else %>
+    <div style="text-align: center;">
+      <p>No history available.</p>
+    </div>
+  <% end %>
+</div>

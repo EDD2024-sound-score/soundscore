@@ -1,29 +1,39 @@
-<h2>Sign upaaaaaaaaaaa</h2>
+<h1 style="text-align: center; margin-bottom: 30px;">
+  <img src="<%= asset_path('title_icon.png') %>" alt="icon" style="vertical-align: middle; margin-right: 10px; width: 45px; height: 45px;">
+  SoundScore
+</h1>
+
+<h2 style="text-align: center; margin-bottom: 30px;">Sign Up</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <!-- エラーメッセージを表示 -->
   <%= render "users/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <!-- メールアドレスフィールド -->
+  <div class="field" style="margin-bottom: 20px; width: 60%; margin-left: auto; margin-right: auto;">
+    <%= f.label :email.downcase, style: "display: block; margin-bottom: 5px;" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", style: "width: 100%;" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password %>
+  <!-- パスワードフィールド -->
+  <div class="field" style="margin-bottom: 20px; width: 60%; margin-left: auto; margin-right: auto;">
+    <%= f.label :password.downcase, style: "display: block; margin-bottom: 5px;" %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %>
+    <%= f.password_field :password, autocomplete: "new-password", class: "form-control", style: "width: 100%;" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <!-- パスワード確認フィールド -->
+  <div class="field" style="margin-bottom: 20px; width: 60%; margin-left: auto; margin-right: auto;">
+    <%= f.label :password_confirmation.downcase, style: "display: block; margin-bottom: 5px;" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", style: "width: 100%;" %>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+  <!-- サインアップボタン -->
+  <div class="actions" style="width: 60%; margin-left: auto; margin-right: auto; margin-top: 20px; margin-bottom: 20px; display: flex; justify-content: space-between;">
+    <%= link_to "Log in", new_session_path(resource_name), style: "color: #DDA0DD; padding: 5px 15px; display: inline-block; text-decoration: none; border: 1px solid transparent; margin-top: 10px; margin-bottom: 10px; margin-right: auto;" %>
+    <%= f.submit "Sign up", class: "btn btn-primary", style: "width: auto; padding: 5px 15px; margin-top: 10px; margin-bottom: 10px; font-size: 18px;" %>
   </div>
 <% end %>
 
-<%= render "users/shared/links" %>
