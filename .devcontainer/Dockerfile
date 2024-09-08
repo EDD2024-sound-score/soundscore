@@ -21,6 +21,10 @@ RUN apt-get update -qq && apt-get install -y python3 python3-pip
 
 # 必要なPythonパッケージをインストールする場合は、以下に追加
 # RUN pip3 install <パッケージ名>
+RUN apt-get install -y ffmpeg
+RUN pip3 install pydub
+RUN pip3 install numpy
+RUN pip3 install scipy
 
 # デフォルトのコマンド
 CMD ["sleep", "infinity"]

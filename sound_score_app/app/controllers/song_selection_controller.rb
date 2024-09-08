@@ -25,9 +25,12 @@ class SongSelectionController < ApplicationController
       file.write(uploaded_file.read)
     end
   
-    # pitchのfrequenciesデータをfloatに変換してスペース区切りの文字列にする
-    pitch_data = @song.pitch['frequencies'].map(&:to_f).join(' ')
-  
+    # frequenciesデータをスペースで分割して配列に変換し、その後floatに変換
+    #pitch_data = @song.pitch['frequencies'].split.map(&:to_f).join(' ')
+    
+    # frequenciesデータが配列であることを前提にfloatに変換してスペース区切りの文字列に変換
+    pitch_data = @song.pitch['frequencies'].map(&:to_f).join(' ') 
+
     # Pythonスクリプトを実行してファイルとpitchデータを渡す
     stdout, stderr, status = Open3.capture3("python3 #{Rails.root.join('lib', 'python_scripts', 'test2_score.py')} #{temp_file_path} '#{pitch_data}'")
   

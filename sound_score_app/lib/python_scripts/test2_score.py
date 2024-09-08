@@ -106,7 +106,7 @@ def calculate_score(aligned_testdata, aligned_frequencies):
             match += 1  # 一致する場合、matchを増加
 
     # スコアを計算
-    score = match / total
+    score = (match / total) * 100
     return score
 
 # スコアを計算
