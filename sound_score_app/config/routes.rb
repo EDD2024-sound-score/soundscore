@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get 'users/:id', to: 'mypage#index', as: 'mypage' # マイページ
 
 
-  devise_for :users, controllers: {
+  devise_for :users, path: 'auth', controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions'
   }

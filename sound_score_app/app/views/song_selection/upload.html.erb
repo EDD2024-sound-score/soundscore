@@ -1,22 +1,28 @@
-<h1><%= @song.title %> の演奏をアップロード</h1>
+<h1 class="text-center mb-5"><%= @song.title %> の演奏をアップロード</h1>
 
-<!-- アップロードフォーム -->
-<%= form_with url: submit_song_path(@song), local: true, method: :post, multipart: true do |f| %>
-  <div class="form-group">
-    <!-- ファイル選択フィールド -->
-    <%= f.label :performance_file, "演奏ファイルを選択してください" %><br>
-    <%= f.file_field :performance_file, class: "form-control", required: true %>
+<div class="container">
+  <!-- アップロードフォーム -->
+  <div class="card shadow-sm" style="max-width: 600px; margin: 0 auto;">
+    <div class="card-body">
+      <%= form_with url: submit_song_path(@song), local: true, method: :post, multipart: true do |f| %>
+        <div class="form-group mb-4">
+          <!-- ファイル選択フィールド -->
+          <%= f.label :performance_file, "演奏ファイルを選択してください", class: "form-label" %>
+          <%= f.file_field :performance_file, class: "form-control", required: true %>
+        </div>
+
+        <!-- アップロードボタン -->
+        <div class="form-group text-center">
+          <%= f.submit "アップロード", class: "btn btn-primary btn-lg" %>
+        </div>
+      <% end %>
+    </div>
   </div>
 
-  <!-- アップロードボタン -->
-  <div class="form-group">
-    <%= f.submit "アップロード", class: "btn btn-primary" %>
-  </div>
-<% end %>
-
-<!-- エラーメッセージの表示（アップロード失敗時） -->
-<% if flash[:alert].present? %>
-  <div class="alert alert-danger">
-    <p><%= flash[:alert] %></p>
-  </div>
-<% end %>
+  <!-- エラーメッセージの表示（アップロード失敗時） -->
+  <% if flash[:alert].present? %>
+    <div class="alert alert-danger mt-4 text-center" role="alert">
+      <p><%= flash[:alert] %></p>
+    </div>
+  <% end %>
+</div>

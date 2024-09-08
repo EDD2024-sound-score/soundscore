@@ -1,26 +1,25 @@
 <div style="padding: 40px; background-color: #f9f9f9;"> <!-- 全体に余白を持たせるコンテナ -->
   <h1 style="font-size: 2rem; text-align: left; margin-bottom: 30px; padding-left: 20px;">選曲</h1>
 
-
-  <!-- グリッドレイアウト -->
-  <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; padding: 0 20px;">
+  <!-- カードを1つずつ縦に並べるレイアウト -->
+  <div style="display: flex; flex-direction: column; gap: 20px; padding: 0 20px;"> <!-- 縦並びのレイアウトに変更 -->
 
     <% @songs.each do |song| %>
       <!-- 曲カード全体をリンクにする -->
       <a href="<%= upload_song_path(song) %>" style="text-decoration: none;">
-        <div style="background-color: #e0e0e0; border-radius: 8px; padding: 20px; display: flex; flex-direction: column; align-items: center; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); transition: background-color 0.2s, transform 0.2s; cursor: pointer;">
-          <!-- 音符アイコン -->
-          <div style="font-size: 2rem; margin-bottom: 10px;">🎵</div>
-          <!-- 曲名 -->
-          <div style="font-size: 1.2rem; margin-bottom: 5px; color: black;"><%= song.title %></div>
-          <!-- アーティスト名 -->
-          <div style="font-size: 1rem; color: gray;"><%= song.artist %></div>
+        <div style="background-color: #e0e0e0; border-radius: 8px; padding: 20px; display: flex; align-items: center; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); transition: background-color 0.2s, transform 0.2s; cursor: pointer;">
+          <!-- 音符アイコン（左端に配置） -->
+          <div style="font-size: 2rem; margin-right: 15px;">🎵</div>
+          <!-- 曲名とアーティスト名（縦に並べる） -->
+          <div style="display: flex; flex-direction: column;">
+            <div style="font-size: 1.2rem; margin-bottom: 5px; color: black;"><%= song.title %></div>
+            <div style="font-size: 1rem; color: gray;"><%= song.artist %></div>
+          </div>
         </div>
       </a>
     <% end %>
 
   </div>
-
 </div>
 
 <!-- カードのホバー効果を追加 -->
