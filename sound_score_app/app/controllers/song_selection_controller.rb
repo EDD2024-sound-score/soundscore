@@ -29,7 +29,7 @@ class SongSelectionController < ApplicationController
     pitch_data = @song.pitch['frequencies'].map(&:to_f).join(' ')
   
     # Pythonスクリプトを実行してファイルとpitchデータを渡す
-    stdout, stderr, status = Open3.capture3("python3 #{Rails.root.join('lib', 'python_scripts', 'file_read.py')} #{temp_file_path} '#{pitch_data}'")
+    stdout, stderr, status = Open3.capture3("python3 #{Rails.root.join('lib', 'python_scripts', 'test2_score.py')} #{temp_file_path} '#{pitch_data}'")
   
     if status.success?
       @accuracy = stdout.strip.to_f # Pythonスクリプトからの出力をfloat型に変換
